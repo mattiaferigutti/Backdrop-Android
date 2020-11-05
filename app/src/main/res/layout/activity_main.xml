@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/main_container"
+    android:background="@color/purple_500"
+    tools:context=".MainActivity">
+
+    <fragment
+        android:elevation="1dp"
+        app:behavior_peekHeight="70dp"
+        android:id="@+id/filter_fragment"
+        android:name="com.mattiaferigutti.backdrop.WindowFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:behavior_skipCollapsed="true"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- with app:behavior_skipCollapsed="true" it won't stop in the middle -->
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

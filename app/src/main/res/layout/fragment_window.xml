@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/corner"
+    tools:context=".WindowFragment">
+
+    <FrameLayout
+        android:animateLayoutChanges="true"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:elevation="10dp"
+        android:layout_marginBottom="-20dp"
+        android:background="@drawable/corner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/textResult"
+            android:layout_marginStart="15dp"
+            android:layout_gravity="center|start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0 results"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:background="@android:color/transparent"
+            android:id="@+id/filterImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_filter_list_24"
+            android:layout_gravity="center|end"
+            android:layout_marginEnd="15dp"/>
+    </FrameLayout>
+
+
+</LinearLayout>

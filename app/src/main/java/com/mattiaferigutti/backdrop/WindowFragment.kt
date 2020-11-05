@@ -36,7 +36,6 @@ class WindowFragment : BottomSheetDialogFragment(), OnBottomSheetCallbacks {
                 (activity as MainActivity).openBottomSheet()
             }
         }
-
     }
 
     override fun onStateChanged(bottomSheet: View, newState: Int) {

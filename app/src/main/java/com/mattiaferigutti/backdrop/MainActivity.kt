@@ -25,7 +25,8 @@ class MainActivity : AppCompatActivity() {
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //removing the shadow from the action bar
+        // Set the elevation equal to zero to remove any shadows between the action bar
+        // (same thing for the toolbar) and the layout
         supportActionBar?.elevation = 0f
 
         setToggleMenuButtons()
@@ -136,10 +137,12 @@ class MainActivity : AppCompatActivity() {
                     override fun onSlide(bottomSheet: View, slideOffset: Float) {}
 
                     override fun onStateChanged(bottomSheet: View, newState: Int) {
+                        // Call the interface to notify a state change
                         listener?.onStateChanged(bottomSheet, newState)
                     }
                 })
 
+                // Set the bottom sheet expanded by default
                 bs.state = BottomSheetBehavior.STATE_EXPANDED
 
                 mBottomSheetBehavior = bs

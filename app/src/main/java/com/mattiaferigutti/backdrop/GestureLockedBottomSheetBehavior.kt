@@ -7,7 +7,11 @@ import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
-class GestureLockedBottomSheetBehavior<V: View>(context: Context, attributeSet: AttributeSet?) : BottomSheetBehavior<V>(context, attributeSet) {
+/**
+ * This class will block any gesture from the bottom sheet
+ */
+class GestureLockedBottomSheetBehavior<V: View>(context: Context, attributeSet: AttributeSet?)
+    : BottomSheetBehavior<V>(context, attributeSet) {
 
     /*constructor(context: Context) : this(context, null)*/
 

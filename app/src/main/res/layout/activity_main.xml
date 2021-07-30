@@ -172,6 +172,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <!--
+    * app:behavior_skipCollapsed=”true”:
+    prevents bottom sheet component to stop in the middle when we’re dragging it down
+    * app:behavior_peekHeight="70dp":
+    the height when the bottom sheet is collapsed
+    * app:layout_behavior=".GestureLockedBottomSheetBehavior":
+    sets a custom class to block any gesture on the bottom sheet
+    -->
     <androidx.fragment.app.FragmentContainerView
         android:elevation="1dp"
         app:behavior_peekHeight="70dp"

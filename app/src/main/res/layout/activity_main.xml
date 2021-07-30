@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,7 +19,7 @@
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sort"
+            android:text="@string/sort_text"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -43,7 +44,7 @@
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Most Popular" />
+                android:text="@string/most_popular_button" />
 
             <com.google.android.material.button.MaterialButton
                 style="@style/WhiteOutlinedButton"
@@ -51,7 +52,7 @@
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Closest" />
+                android:text="@string/closest_button" />
 
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -70,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Difficulty"
+            android:text="@string/difficulty"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -89,25 +90,28 @@
             app:layout_constraintTop_toBottomOf="@+id/textView2">
 
             <com.google.android.material.button.MaterialButton
-                style="@style/WhiteOutlinedButton"                android:id="@+id/easyButton"
+                style="@style/WhiteOutlinedButton"
+                android:id="@+id/easyButton"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Easy" />
+                android:text="@string/easy" />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/WhiteOutlinedButton"                android:id="@+id/moderateButton"
+                style="@style/WhiteOutlinedButton"
+                android:id="@+id/moderateButton"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Moderate" />
+                android:text="@string/moderate" />
 
             <com.google.android.material.button.MaterialButton
-                style="@style/WhiteOutlinedButton"                android:id="@+id/hardButton"
+                style="@style/WhiteOutlinedButton"
+                android:id="@+id/hardButton"
                 android:layout_width="0px"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Hard" />
+                android:text="@string/hard" />
         </com.google.android.material.button.MaterialButtonToggleGroup>
 
         <View
@@ -125,7 +129,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Length"
+            android:text="@string/length"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -139,7 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="0 km - 150+ km"
+            android:text="@string/length_range"
             android:textColor="@color/white"
             android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"

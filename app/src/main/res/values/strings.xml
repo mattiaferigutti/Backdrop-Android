@@ -2,4 +2,15 @@
     <string name="app_name">Backdrop</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="no_results">0 results</string>
+    <string name="filter_button">Filter</string>
+    <string name="sort_text">Sort</string>
+    <string name="most_popular_button">Most Popular</string>
+    <string name="closest_button">Closest</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="easy">Easy</string>
+    <string name="moderate">Moderate</string>
+    <string name="hard">Hard</string>
+    <string name="length">Length</string>
+    <string name="length_range">0 km - 150+ km</string>
 </resources>

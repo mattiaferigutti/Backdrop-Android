@@ -65,10 +65,13 @@ class MainActivity : AppCompatActivity() {
     private fun setRangerSlider() {
         binding.lengthSlider.addOnChangeListener { rangeSlider, /*value*/ _, /*fromUser*/ _ ->
             // Responds to when slider's value is changed
-            binding.lengthTextView.text =
-                "${rangeSlider.values[0].toInt()} km - ${rangeSlider.values[1].toInt()} km"
+            binding.lengthTextView.text = getString(R.string.length_range_current,
+                rangeSlider.values[0].toInt(), rangeSlider.values[1].toInt())
             if (rangeSlider.values[1].toInt() == 150) {
-                binding.lengthTextView.text = binding.lengthTextView.text.toString() + "+"
+                binding.lengthTextView.text = getString(
+                    R.string.length_max,
+                    binding.lengthTextView.text.toString()
+                )
             }
         }
 

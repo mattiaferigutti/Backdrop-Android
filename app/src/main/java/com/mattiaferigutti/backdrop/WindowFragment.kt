@@ -55,11 +55,11 @@ class WindowFragment : BottomSheetDialogFragment(), OnBottomSheetCallbacks {
         currentState = newState
         when (newState) {
             BottomSheetBehavior.STATE_EXPANDED -> {
-                binding.textResult.text = "0 results"
+                binding.textResult.text = getString(R.string.zero_results)
                 binding.filterImage.setImageResource(R.drawable.ic_baseline_filter_list_24)
             }
             BottomSheetBehavior.STATE_COLLAPSED -> {
-                binding.textResult.text = "See the results"
+                binding.textResult.text = getString(R.string.see_the_results)
                 binding.filterImage.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24)
             }
             // TODO: when the bottom sheet is moving update data

@@ -13,4 +13,8 @@
     <string name="hard">Hard</string>
     <string name="length">Length</string>
     <string name="length_range">0 km - 150+ km</string>
+    <string name="length_range_current">%1$d km - %2$d km</string>
+    <string name="length_max">%1$s+</string>
+    <string name="zero_results">0 results</string>
+    <string name="see_the_results">See the results</string>
 </resources>

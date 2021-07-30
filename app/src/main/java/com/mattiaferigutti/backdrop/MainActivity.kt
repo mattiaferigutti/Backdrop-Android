@@ -8,14 +8,21 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.slider.RangeSlider
-import kotlinx.android.synthetic.main.activity_main.*
+import com.mattiaferigutti.backdrop.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
+    private var _binding: ActivityMainBinding? = null
+    // This property is only valid between `onCreateView` and `onDestroyView`
+    private val binding get() = _binding!!
+
     private var listener: OnBottomSheetCallbacks? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         //removing the shadow from the action bar
         supportActionBar?.elevation = 0f
@@ -23,6 +30,13 @@ class MainActivity : AppCompatActivity() {
         configureBackdrop()
         setToggleMenuButtons()
         setRangerSlider()
+    }
+
+    // NOTE: fragments outlive their views!
+    //       One must clean up any references to the binging class instance here
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     fun setOnBottomSheetCallbacks(onBottomSheetCallbacks: OnBottomSheetCallbacks) {
@@ -40,25 +54,25 @@ class MainActivity : AppCompatActivity() {
     private var mBottomSheetBehavior: BottomSheetBehavior<View?>? = null
 
     private fun setToggleMenuButtons() {
-        materialButtonToggleGroupSort.addOnButtonCheckedListener { _, checkedId, _ ->
+        binding.materialButtonToggleGroupSort.addOnButtonCheckedListener { _, checkedId, _ ->
             toggleButton(findViewById(checkedId))
         }
-        materialButtonToggleGroupDifficulty.addOnButtonCheckedListener { _, checkedId, _ ->
+        binding.materialButtonToggleGroupDifficulty.addOnButtonCheckedListener { _, checkedId, _ ->
             toggleButton(findViewById(checkedId))
         }
     }
 
     private fun setRangerSlider() {
-        lengthSlider.addOnChangeListener { rangeSlider, /*value*/ _, /*fromUser*/ _ ->
+        binding.lengthSlider.addOnChangeListener { rangeSlider, /*value*/ _, /*fromUser*/ _ ->
             // Responds to when slider's value is changed
-            lengthTextView.text =
+            binding.lengthTextView.text =
                 "${rangeSlider.values[0].toInt()} km - ${rangeSlider.values[1].toInt()} km"
             if (rangeSlider.values[1].toInt() == 150) {
-                lengthTextView.text = lengthTextView.text.toString() + "+"
+                binding.lengthTextView.text = binding.lengthTextView.text.toString() + "+"
             }
         }
 
-        lengthSlider.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener {
+        binding.lengthSlider.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener {
             override fun onStartTrackingTouch(slider: RangeSlider) {
                 // Responds to when slider's touch event is being started
             }

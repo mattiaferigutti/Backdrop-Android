@@ -1,12 +1,12 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "29.0.3"
+    buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.mattiaferigutti.backdrop"
@@ -16,6 +16,13 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildFeatures {
+        // Part of Android Jetpack: View Binding library
+        // Allow to get rid of `findViewById` calls and achieve null/type safety
+        // Documentation: https://developer.android.com/topic/libraries/view-binding
+        viewBinding true
     }
 
     buildTypes {

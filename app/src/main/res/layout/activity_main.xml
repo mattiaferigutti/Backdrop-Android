@@ -172,7 +172,7 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <fragment
+    <androidx.fragment.app.FragmentContainerView
         android:elevation="1dp"
         app:behavior_peekHeight="70dp"
         android:id="@+id/filter_fragment"

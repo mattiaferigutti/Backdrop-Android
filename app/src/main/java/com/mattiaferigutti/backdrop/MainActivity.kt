@@ -17,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val binding get() = _binding!!
 
     private var listener: OnBottomSheetCallbacks? = null
+    private var mBottomSheetBehavior: BottomSheetBehavior<View?>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +28,14 @@ class MainActivity : AppCompatActivity() {
         //removing the shadow from the action bar
         supportActionBar?.elevation = 0f
 
-        configureBackdrop()
         setToggleMenuButtons()
         setRangerSlider()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        configureBackdrop()
     }
 
     // NOTE: fragments outlive their views!
@@ -50,8 +56,6 @@ class MainActivity : AppCompatActivity() {
     fun openBottomSheet() {
         mBottomSheetBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
     }
-
-    private var mBottomSheetBehavior: BottomSheetBehavior<View?>? = null
 
     private fun setToggleMenuButtons() {
         binding.materialButtonToggleGroupSort.addOnButtonCheckedListener { _, checkedId, _ ->
@@ -125,7 +129,7 @@ class MainActivity : AppCompatActivity() {
     private fun configureBackdrop() {
         val fragment = supportFragmentManager.findFragmentById(R.id.filter_fragment)
 
-        fragment?.view?.let { view ->
+        (fragment?.view?.parent as View).let { view ->
             BottomSheetBehavior.from(view).let { bs ->
 
                 bs.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {

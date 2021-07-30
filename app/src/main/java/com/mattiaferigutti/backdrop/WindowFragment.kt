@@ -32,7 +32,7 @@ class WindowFragment : BottomSheetDialogFragment(), OnBottomSheetCallbacks {
         filterImage.setOnClickListener {
             if (currentState == BottomSheetBehavior.STATE_EXPANDED) {
                 (activity as MainActivity).closeBottomSheet()
-            } else  {
+            } else {
                 (activity as MainActivity).openBottomSheet()
             }
         }
@@ -49,7 +49,7 @@ class WindowFragment : BottomSheetDialogFragment(), OnBottomSheetCallbacks {
                 textResult.text = "See the results"
                 filterImage.setImageResource(R.drawable.ic_baseline_keyboard_arrow_up_24)
             }
-            //todo: when the bottom sheet is moving update data
+            // TODO: when the bottom sheet is moving update data
         }
     }
 }

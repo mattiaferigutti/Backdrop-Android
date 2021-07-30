@@ -1,11 +1,8 @@
 package com.mattiaferigutti.backdrop
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -52,9 +49,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setRangerSlider() {
-        lengthSlider.addOnChangeListener { rangeSlider, value, fromUser ->
+        lengthSlider.addOnChangeListener { rangeSlider, /*value*/ _, /*fromUser*/ _ ->
             // Responds to when slider's value is changed
-            lengthTextView.text = "${rangeSlider.values[0].toInt()} km - ${rangeSlider.values[1].toInt()} km"
+            lengthTextView.text =
+                "${rangeSlider.values[0].toInt()} km - ${rangeSlider.values[1].toInt()} km"
             if (rangeSlider.values[1].toInt() == 150) {
                 lengthTextView.text = lengthTextView.text.toString() + "+"
             }
@@ -71,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun handleCheckedButtonsInSort() {
+    /*private fun handleCheckedButtonsInSort() {
         when {
             materialButtonToggleGroupSort.checkedButtonIds.contains(R.id.mostPopularButton) -> {
 
@@ -80,9 +78,9 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-    }
+    }*/
 
-    private fun handleCheckedButtonsInDifficulty() {
+    /*private fun handleCheckedButtonsInDifficulty() {
         when {
             materialButtonToggleGroupDifficulty.checkedButtonIds.contains(R.id.easyButton) -> {
 
@@ -94,11 +92,12 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-    }
+    }*/
 
     private fun toggleButton(button: MaterialButton) {
         if (button.textColors.defaultColor == ContextCompat.getColor(this, R.color.white)) {
-            button.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.selected_item))
+            button.strokeColor =
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.selected_item))
             button.setTextColor(ContextCompat.getColor(this, R.color.selected_item))
         } else {
             button.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))
@@ -109,8 +108,8 @@ class MainActivity : AppCompatActivity() {
     private fun configureBackdrop() {
         val fragment = supportFragmentManager.findFragmentById(R.id.filter_fragment)
 
-        fragment?.view?.let {
-            BottomSheetBehavior.from(it).let { bs ->
+        fragment?.view?.let { view ->
+            BottomSheetBehavior.from(view).let { bs ->
 
                 bs.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                     override fun onSlide(bottomSheet: View, slideOffset: Float) {}

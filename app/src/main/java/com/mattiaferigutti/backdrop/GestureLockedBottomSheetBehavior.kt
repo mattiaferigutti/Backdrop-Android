@@ -7,13 +7,22 @@ import android.view.View
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 
-class GestureLockedBottomSheetBehavior<V: View>(context: Context, attributeSet: AttributeSet?) : BottomSheetBehavior<V>(context, attributeSet) {
+/**
+ * This class will block any gesture from the bottom sheet
+ */
+class GestureLockedBottomSheetBehavior<V: View>(context: Context, attributeSet: AttributeSet?)
+    : BottomSheetBehavior<V>(context, attributeSet) {
 
-    constructor(context: Context):this(context, null)
+    /*constructor(context: Context) : this(context, null)*/
 
-    override fun onInterceptTouchEvent(parent: CoordinatorLayout, child: V, event: MotionEvent): Boolean = false
+    override fun onInterceptTouchEvent(
+        parent: CoordinatorLayout,
+        child: V,
+        event: MotionEvent
+    ): Boolean = false
 
-    override fun onTouchEvent(parent: CoordinatorLayout, child: V, event: MotionEvent): Boolean = false
+    override fun onTouchEvent(parent: CoordinatorLayout, child: V, event: MotionEvent): Boolean =
+        false
 
     override fun onStartNestedScroll(
         coordinatorLayout: CoordinatorLayout,
@@ -32,9 +41,16 @@ class GestureLockedBottomSheetBehavior<V: View>(context: Context, attributeSet: 
         dy: Int,
         consumed: IntArray,
         type: Int
-    ) { }
+    ) {
+    }
 
-    override fun onStopNestedScroll(coordinatorLayout: CoordinatorLayout, child: V, target: View, type: Int) { }
+    override fun onStopNestedScroll(
+        coordinatorLayout: CoordinatorLayout,
+        child: V,
+        target: View,
+        type: Int
+    ) {
+    }
 
     override fun onNestedFling(
         coordinatorLayout: CoordinatorLayout,

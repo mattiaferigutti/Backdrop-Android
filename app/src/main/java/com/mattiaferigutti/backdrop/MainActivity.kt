@@ -1,31 +1,49 @@
 package com.mattiaferigutti.backdrop
 
 import android.content.res.ColorStateList
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.slider.RangeSlider
-import kotlinx.android.synthetic.main.activity_main.*
+import com.mattiaferigutti.backdrop.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity() {
+    private var _binding: ActivityMainBinding? = null
+    // This property is only valid between `onCreateView` and `onDestroyView`
+    private val binding get() = _binding!!
+
     private var listener: OnBottomSheetCallbacks? = null
+    private var mBottomSheetBehavior: BottomSheetBehavior<View?>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
-        //removing the shadow from the action bar
+        _binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        // Set the elevation equal to zero to remove any shadows between the action bar
+        // (same thing for the toolbar) and the layout
         supportActionBar?.elevation = 0f
 
-        configureBackdrop()
         setToggleMenuButtons()
         setRangerSlider()
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        configureBackdrop()
+    }
+
+    // NOTE: fragments outlive their views!
+    //       One must clean up any references to the binging class instance here
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
     fun setOnBottomSheetCallbacks(onBottomSheetCallbacks: OnBottomSheetCallbacks) {
@@ -40,27 +58,29 @@ class MainActivity : AppCompatActivity() {
         mBottomSheetBehavior?.state = BottomSheetBehavior.STATE_EXPANDED
     }
 
-    private var mBottomSheetBehavior: BottomSheetBehavior<View?>? = null
-
     private fun setToggleMenuButtons() {
-        materialButtonToggleGroupSort.addOnButtonCheckedListener { _, checkedId, _ ->
+        binding.materialButtonToggleGroupSort.addOnButtonCheckedListener { _, checkedId, _ ->
             toggleButton(findViewById(checkedId))
         }
-        materialButtonToggleGroupDifficulty.addOnButtonCheckedListener { _, checkedId, _ ->
+        binding.materialButtonToggleGroupDifficulty.addOnButtonCheckedListener { _, checkedId, _ ->
             toggleButton(findViewById(checkedId))
         }
     }
 
     private fun setRangerSlider() {
-        lengthSlider.addOnChangeListener { rangeSlider, value, fromUser ->
+        binding.lengthSlider.addOnChangeListener { rangeSlider, /*value*/ _, /*fromUser*/ _ ->
             // Responds to when slider's value is changed
-            lengthTextView.text = "${rangeSlider.values[0].toInt()} km - ${rangeSlider.values[1].toInt()} km"
+            binding.lengthTextView.text = getString(R.string.length_range_current,
+                rangeSlider.values[0].toInt(), rangeSlider.values[1].toInt())
             if (rangeSlider.values[1].toInt() == 150) {
-                lengthTextView.text = lengthTextView.text.toString() + "+"
+                binding.lengthTextView.text = getString(
+                    R.string.length_max,
+                    binding.lengthTextView.text.toString()
+                )
             }
         }
 
-        lengthSlider.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener {
+        binding.lengthSlider.addOnSliderTouchListener(object : RangeSlider.OnSliderTouchListener {
             override fun onStartTrackingTouch(slider: RangeSlider) {
                 // Responds to when slider's touch event is being started
             }
@@ -71,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun handleCheckedButtonsInSort() {
+    /*private fun handleCheckedButtonsInSort() {
         when {
             materialButtonToggleGroupSort.checkedButtonIds.contains(R.id.mostPopularButton) -> {
 
@@ -80,9 +100,9 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-    }
+    }*/
 
-    private fun handleCheckedButtonsInDifficulty() {
+    /*private fun handleCheckedButtonsInDifficulty() {
         when {
             materialButtonToggleGroupDifficulty.checkedButtonIds.contains(R.id.easyButton) -> {
 
@@ -94,11 +114,12 @@ class MainActivity : AppCompatActivity() {
 
             }
         }
-    }
+    }*/
 
     private fun toggleButton(button: MaterialButton) {
         if (button.textColors.defaultColor == ContextCompat.getColor(this, R.color.white)) {
-            button.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.selected_item))
+            button.strokeColor =
+                ColorStateList.valueOf(ContextCompat.getColor(this, R.color.selected_item))
             button.setTextColor(ContextCompat.getColor(this, R.color.selected_item))
         } else {
             button.strokeColor = ColorStateList.valueOf(ContextCompat.getColor(this, R.color.white))
@@ -109,17 +130,19 @@ class MainActivity : AppCompatActivity() {
     private fun configureBackdrop() {
         val fragment = supportFragmentManager.findFragmentById(R.id.filter_fragment)
 
-        fragment?.view?.let {
-            BottomSheetBehavior.from(it).let { bs ->
+        (fragment?.view?.parent as View).let { view ->
+            BottomSheetBehavior.from(view).let { bs ->
 
                 bs.addBottomSheetCallback(object : BottomSheetBehavior.BottomSheetCallback() {
                     override fun onSlide(bottomSheet: View, slideOffset: Float) {}
 
                     override fun onStateChanged(bottomSheet: View, newState: Int) {
+                        // Call the interface to notify a state change
                         listener?.onStateChanged(bottomSheet, newState)
                     }
                 })
 
+                // Set the bottom sheet expanded by default
                 bs.state = BottomSheetBehavior.STATE_EXPANDED
 
                 mBottomSheetBehavior = bs

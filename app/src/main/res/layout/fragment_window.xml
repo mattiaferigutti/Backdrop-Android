@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
+    android:id="@+id/fragment_root_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -20,23 +21,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <androidx.appcompat.widget.AppCompatTextView
+        <com.google.android.material.textview.MaterialTextView
             android:id="@+id/textResult"
             android:layout_marginStart="15dp"
             android:layout_gravity="center|start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="0 results"
+            android:text="@string/no_results"
             android:textColor="#2B2B2B"
             android:textSize="20sp" />
 
-        <ImageButton
+        <androidx.appcompat.widget.AppCompatImageButton
             android:background="@android:color/transparent"
             android:id="@+id/filterImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_baseline_filter_list_24"
             android:layout_gravity="center|end"
-            android:layout_marginEnd="15dp"/>
+            android:layout_marginEnd="15dp"
+            android:contentDescription="@string/filter_button" />
     </FrameLayout>
 </LinearLayout>
